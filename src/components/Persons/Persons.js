@@ -37,7 +37,6 @@ class Persons extends Component {
 
         return (
             <div>
-                <h1> Hello, People</h1>
                 {persons}
             </div>
         );
