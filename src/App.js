@@ -29,7 +29,7 @@ class App extends Component  {
       <div className="App">
         <Navbar bg="light" expand="sm">
           <Logo />
-          <Navbar.Brand href="#home">Burger Builder</Navbar.Brand>
+          <Navbar.Brand href="/">Burger Builder</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
