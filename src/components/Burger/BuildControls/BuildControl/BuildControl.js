@@ -13,7 +13,10 @@ const BuildControl = (props) => {
                 className = {classes.Slider}
                 value={value}
                 max = {5}
-                onChange={(changeEvent) => {setValue(changeEvent.target.value)}}
+                onChange={(changeEvent) => {
+                    setValue(changeEvent.target.value); 
+                    props.onIngredientChange(props.type, changeEvent.target.value);
+                }}
                 />
         </div> );
 }
