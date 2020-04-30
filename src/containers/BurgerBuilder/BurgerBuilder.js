@@ -40,7 +40,7 @@ class BurgerBuilder extends Component {
         let _ingredients =  {
             ...this.state.ingredients
         }
-        _ingredients[type] = amount;
+        _ingredients[type] = +amount;
         let _total = this.calculatePrice(_ingredients);
         this.setState({ingredients: _ingredients, total: _total})
         
@@ -49,7 +49,7 @@ class BurgerBuilder extends Component {
     render() { 
         return ( 
             <Container >
-                <Row>
+                <Row className='align-items-center'>
                     <Col>       
                         <Burger ingredients={this.state.ingredients}/>
                     </Col>
