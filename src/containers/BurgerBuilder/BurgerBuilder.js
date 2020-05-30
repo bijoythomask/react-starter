@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
-
+import * as actions from '../../redux/actions'
 
 const PRICE = {
     salad: 0.5,
@@ -15,13 +16,7 @@ const PRICE = {
 }
 
 class BurgerBuilder extends Component {
-    state = { 
-        ingredients: {
-            salad: 0,
-            bacon: 0,
-            cheese : 0,
-            meat: 0
-        },
+    state = {         
         total: 4
     }
 
@@ -38,7 +33,7 @@ class BurgerBuilder extends Component {
     ingredientsChangedHandler = (type, amount) => {
         console.log("type: " +type + " amount: " + amount);
         let _ingredients =  {
-            ...this.state.ingredients
+            ...this.props.ingredients
         }
         _ingredients[type] = +amount;
         let _total = this.calculatePrice(_ingredients);
@@ -51,15 +46,32 @@ class BurgerBuilder extends Component {
             <Container >
                 <Row className='align-items-center'>
                     <Col>       
-                        <Burger ingredients={this.state.ingredients}/>
+                        <Burger ingredients={this.props.ingredients}/>
                     </Col>
                     <Col lg='4' >
-                        <BuildControls onIngredientChange={this.ingredientsChangedHandler}/>    
+                        <BuildControls onIngredientChange={this.props.onIngredientChange}/>    
                     </Col>   
+                </Row>
+                <Row>
+                    Price : {this.props.totalPrice}
                 </Row>
             </Container>
          );
     }
 }
+
+const mapStateToProps = state => {
+    const {ingredients,totalPrice} = state.burger;
+    return {
+        ingredients: ingredients,
+        totalPrice: totalPrice
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onIngredientChange: (ingredient, amount) => dispatch(actions.setIngredient(ingredient, amount))
+    }    
+}
  
-export default BurgerBuilder;
+export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);

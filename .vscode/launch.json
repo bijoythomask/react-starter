@@ -5,25 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Android",
-            "cwd": "${workspaceFolder}",
-            "type": "reactnative",
+            "type": "chrome",
             "request": "launch",
-            "platform": "android"
-        },
-        {
-            "name": "Debug iOS",
-            "cwd": "${workspaceFolder}",
-            "type": "reactnative",
-            "request": "launch",
-            "platform": "ios"
-        },
-        {
-            "name": "Debug Windows",
-            "cwd": "${workspaceFolder}",
-            "type": "reactnative",
-            "request": "launch",
-            "platform": "windows"
+            "name": "Launch Chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
         }
+        
     ]
 }

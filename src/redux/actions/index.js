@@ -1,0 +1,3 @@
+export {
+    setIngredient
+} from './burger'
