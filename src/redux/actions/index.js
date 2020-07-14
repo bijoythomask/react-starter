@@ -1,3 +1,4 @@
 export {
-    setIngredient
+    setIngredient,
+    initIngredients
 } from './burger'

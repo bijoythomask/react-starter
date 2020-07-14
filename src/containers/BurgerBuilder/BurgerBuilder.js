@@ -8,6 +8,7 @@ import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import * as actions from '../../redux/actions'
 
+
 const PRICE = {
     salad: 0.5,
     cheese: 0.4,
@@ -20,27 +21,9 @@ class BurgerBuilder extends Component {
         total: 4
     }
 
-    calculatePrice = (ingredients) => {
-
-        let total = 4
-        Object.keys(ingredients).forEach( key => {
-            total += PRICE[key] * ingredients[key]
-        });
-        return total;
-
+    componentDidMount(){
+        this.props.onInitIngredients();
     }
-
-    ingredientsChangedHandler = (type, amount) => {
-        console.log("type: " +type + " amount: " + amount);
-        let _ingredients =  {
-            ...this.props.ingredients
-        }
-        _ingredients[type] = +amount;
-        let _total = this.calculatePrice(_ingredients);
-        this.setState({ingredients: _ingredients, total: _total})
-        
-    }
-     
     render() { 
         return ( 
             <Container >
@@ -70,7 +53,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIngredientChange: (ingredient, amount) => dispatch(actions.setIngredient(ingredient, amount))
+        onIngredientChange: (ingredient, amount) => dispatch(actions.setIngredient(ingredient, amount)),
+        onInitIngredients: () => dispatch(actions.initIngredients())
     }    
 }
  

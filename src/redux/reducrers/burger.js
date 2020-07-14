@@ -35,7 +35,7 @@ const burgerReducer = (state = initialState, action) => {
        
         case actionTypes.SET_INCREDIENTS: {
             const {name, amount} = action.payload;
-            const newState = {
+            return {
                 ...state,
                 ingredients: {
                     ...state.ingredients,
@@ -43,16 +43,16 @@ const burgerReducer = (state = initialState, action) => {
                 },
                 totalPrice: calculatePrice(state.ingredients)
             };
-            return newState
         }
-        case actionTypes.INIT_INGREDIENTS: {
+        case actionTypes.FETCH_INGREDIENTS_SUCCESS: {
+            const {ingredients} = action.payload
             return {
                 ...state,
                 ingredients : {
-                    salad: 0,
-                    bacon: 0,
-                    cheese: 0,
-                    meat: 0
+                    salad: ingredients.salad,
+                    bacon: ingredients.bacon,
+                    cheese: ingredients.cheese,
+                    meat: ingredients.meat
                 }
             }
         }

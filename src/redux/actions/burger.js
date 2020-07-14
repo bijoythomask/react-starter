@@ -14,7 +14,9 @@ export const setIngredient = (name, amount) => {
 export const onFetchIngredientSuccess = (ingredients) => {
     return {
         type: actionType.FETCH_INGREDIENTS_SUCCESS,
-        ingredients: ingredients
+        payload: {
+            ingredients: ingredients
+        }
     }
 }
 
